@@ -8,7 +8,8 @@ The code has been written and tested on python 3.9
 Default bank import files folder ./bank_files
 Default output folder is ./output
 
-### Import logic. In case parser finds any error in a cell, it reports the whole line 
+### Import logic. 
+In case parser finds any error in a cell, it reports the whole line 
 to the file configured in ERROR_FILE_PATH.
 
 ### Launch
