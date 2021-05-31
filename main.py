@@ -4,6 +4,7 @@ from csv import DictWriter
 from csv_parser import parse_csv_file, output_fields
 
 
+
 def main():
     input_file_path = f'{config_params.BANK_FILES_PATH}/*.csv'
     output_file_path = config_params.OUTPUT_FILE_PATH

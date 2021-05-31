@@ -110,7 +110,7 @@ def _parse_csv_file(csv_file: csv.DictReader, csv_writer: csv.DictWriter, error_
             # and to remember those lines/cells that cause exceptions
             print(f'Error occured {e}')
             error_writer.write(
-                f'Cell "{cell}" in row: "{row}" caused exception: "{e}"\n'
+                f'Cell "{cell}" in row: "{row}" in file: "{csv_file}" caused exception: "{e}"\n'
             )
 
 
