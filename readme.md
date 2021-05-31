@@ -10,13 +10,13 @@ Default output folder is ./output
 
 ### Import logic. 
 In case parser finds any error in a cell, it reports the whole line 
-to the file configured in ERROR_FILE_PATH.
+to the file configured in ERROR_FILE_PATH env var or in config_params.py.
 
 ### Launch
 1.Way
 ```buildoutcfg
 1.cd test_task_banks_import
-2.python3.9 main.py
+2.python[3.9] main.py
 ```
 
 ### run tests
