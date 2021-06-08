@@ -1,8 +1,18 @@
 import glob
+import sys
+
 import config_params
 from csv import DictWriter
 from csv_parser import parse_csv_file, output_fields
 
+
+def get_exit_code(error_file):
+    if error_file.tell():
+        print('Import finished with errors')
+        return 1
+    else:
+        print('Import finihsed without errors')
+        return 0
 
 
 def main():
@@ -20,6 +30,8 @@ def main():
 
             for file_path in files:
                 parse_csv_file(file_path, csv_dict_writer, error_file)
+
+            sys.exit(get_exit_code(error_file))
 
 
 

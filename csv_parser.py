@@ -34,7 +34,7 @@ parsing_map = {
 
     'transaction_type': {
         'single_column': ['type', 'transaction'],
-        'parser': str, 'out_field': True
+        'parser': float, 'out_field': True
     },
 
     'amount': {
