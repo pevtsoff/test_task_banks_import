@@ -132,7 +132,6 @@ def aggregate_fields(meta_out_row: dict) -> dict:
             fields_to_delete.append(field)
 
         elif field in output_fields:
-            # elif parsing_map[field]['out_field']:
             out_row[field] = meta_out_row[field]
 
     return out_row

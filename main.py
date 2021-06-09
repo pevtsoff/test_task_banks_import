@@ -30,6 +30,8 @@ def get_exit_code(error_file):
         return 0
 
 
+
+
 def main():
     input_file_path = f'{config_params.BANK_FILES_PATH}/*.csv'
     output_file_path = config_params.OUTPUT_FILE_PATH
@@ -50,7 +52,6 @@ def main():
 
             logger.info(f'parsing took {time.time() - start:2f} seconds')
             sys.exit(get_exit_code(error_file))
-
 
 
 if __name__ == '__main__':
