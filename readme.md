@@ -25,8 +25,6 @@ to the file configured in ERROR_FILE_PATH env var or in config_params.py.
 2.pytest -s -v .
 ```
 
-No Negative tests have been written :)
-
 # Original Task
 
 Dear Candidate,
