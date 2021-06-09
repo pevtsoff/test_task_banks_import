@@ -5,3 +5,4 @@ OUTPUT_FILE_PATH = os.environ.get('OUTPUT_FILE_PATH', './output/unified_output.t
 ERROR_FILE_PATH = os.environ.get('ERROR_FILE_PATH', './output/error_output.txt')
 INPUT_ENCODING = os.environ.get('INPUT_ENCODING', 'utf-8')
 OUTPUT_TYPE = os.environ.get('OUTPUT_TYPE', 'csv')
+LOG_LEVEL = 'DEBUG'

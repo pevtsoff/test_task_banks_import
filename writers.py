@@ -17,3 +17,13 @@ class CSVWriter:
         self.csv_dict_writer.writerow(row)
 
 
+class JSONWriter:
+    def __init__(self, file, fields):...
+
+    def write_row(self, row):...
+
+
+class XMLWriter:
+    def __init__(self, file, fields):...
+
+    def write_row(self, row):...

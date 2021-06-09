@@ -1,5 +1,8 @@
 import csv
 import _io
+
+from default_logger import logger
+from writers import DataWriter
 from dateutil.parser import parse
 from csv import DictReader, DictWriter
 from typing import Tuple
@@ -84,12 +87,12 @@ output_fields = get_output_field_names()
 
 ############################################## Main Parser Methods #####################################################
 
-def parse_csv_file(input_file_path: str, writer, error_writer: _io.TextIOWrapper):
+def parse_csv_file(input_file_path: str, writer: DataWriter , error_writer: _io.TextIOWrapper):
     with open(input_file_path, 'r', encoding=config_params.INPUT_ENCODING) as input_file:
         _parse_csv_file(input_file, writer, error_writer)
 
 
-def _parse_csv_file(csv_file: csv.DictReader, writer, error_writer: _io.TextIOWrapper):
+def _parse_csv_file(csv_file: csv.DictReader, writer: DataWriter, error_writer: _io.TextIOWrapper):
     csv_dict_reader = DictReader(csv_file)
 
     for row in csv_dict_reader:
@@ -102,13 +105,13 @@ def _parse_csv_file(csv_file: csv.DictReader, writer, error_writer: _io.TextIOWr
                 meta_out_row[out_field] = parsed_cell
 
             out_row = aggregate_fields(meta_out_row)
-            print(f'{out_row=}')
+            logger.debug(f'Processed this row: {row} --> output_row={out_row}')
             writer.write_row(out_row)
 
         except Exception as e:
             # this exception handling allows us to complete the parsing of all files
             # and to remember those lines/cells that cause exceptions
-            print(f'Error occured {e}')
+            logger.exception(f'Error occured {e}')
             error_writer.write(
                 f'Cell "{cell}" in row: "{row}" in file: "{csv_file}" caused exception: "{e}"\n'
             )
