@@ -1,5 +1,4 @@
 import glob
-import os
 import sys
 import time
 import config_params
@@ -30,29 +29,35 @@ def get_exit_code(error_file):
         return 0
 
 
+def get_input_files_list():
+    input_file_path = f'{config_params.BANK_FILES_PATH}/*.csv'
+    return [*glob.iglob(input_file_path, recursive=True)]
 
 
 def main():
-    input_file_path = f'{config_params.BANK_FILES_PATH}/*.csv'
     output_file_path = config_params.OUTPUT_FILE_PATH
     error_file_path = config_params.ERROR_FILE_PATH
-    files = [*glob.iglob(input_file_path, recursive=True)]
+    files = get_input_files_list()
     start = time.time()
     logger.info('Starting parser')
 
-    with open(output_file_path, 'w') as output_file:
-        with open(error_file_path, 'w') as error_file:
+    try:
+        with open(output_file_path, 'w') as output_file:
+            with open(error_file_path, 'w') as error_file:
 
-            writer = get_writer(
-                config_params.OUTPUT_TYPE
-            )(output_file, output_fields)
+                writer = get_writer(
+                    config_params.OUTPUT_TYPE
+                )(output_file, output_fields)
 
-            for file_path in files:
-                parse_csv_file(file_path, writer, error_file)
+                for file_path in files:
+                    parse_csv_file(file_path, writer, error_file)
 
-            logger.info(f'parsing took {time.time() - start:2f} seconds')
-            sys.exit(get_exit_code(error_file))
-
+                logger.info(f'parsing took {time.time() - start:2f} seconds')
+                sys.exit(get_exit_code(error_file))
+    except Exception as e:
+        logger.exception(f'error occured while initializing readers/writers: {e}')
+    finally:
+        sys.exit(2)
 
 if __name__ == '__main__':
     main()
