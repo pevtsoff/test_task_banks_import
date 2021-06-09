@@ -13,14 +13,17 @@ In case parser finds any error in a cell, it reports the whole line
 to the file configured in ERROR_FILE_PATH env var or in config_params.py.
 
 ### Launch
-1.Way
 ```buildoutcfg
 1.cd test_task_banks_import
-2.python[3.9] main.py
+2.pip[3.9] install -r requirements.txt
+3.python[3.9] main.py
 ```
 
 ### run tests
-```pytest -s -v .```
+```
+1.export PYTHONPATH='path to your folder'
+2.pytest -s -v .
+```
 
 No Negative tests have been written :)
 
