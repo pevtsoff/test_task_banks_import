@@ -1,6 +1,7 @@
 import glob
 import os
 import sys
+import time
 import config_params
 from csv_parser import parse_csv_file, output_fields
 from default_logger import logger
@@ -25,7 +26,7 @@ def get_exit_code(error_file):
         logger.info('Import finished with errors')
         return 1
     else:
-        logger.info('Import finihsed without errors')
+        logger.info('Import finished without errors')
         return 0
 
 
@@ -34,6 +35,8 @@ def main():
     output_file_path = config_params.OUTPUT_FILE_PATH
     error_file_path = config_params.ERROR_FILE_PATH
     files = [*glob.iglob(input_file_path, recursive=True)]
+    start = time.time()
+    logger.info('Starting parser')
 
     with open(output_file_path, 'w') as output_file:
         with open(error_file_path, 'w') as error_file:
@@ -45,6 +48,7 @@ def main():
             for file_path in files:
                 parse_csv_file(file_path, writer, error_file)
 
+            logger.info(f'parsing took {time.time() - start:2f} seconds')
             sys.exit(get_exit_code(error_file))
 
 
