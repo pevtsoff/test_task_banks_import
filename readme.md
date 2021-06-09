@@ -2,8 +2,6 @@
 The code has been written and tested on python 3.9
 
 
-### Configuration
-```source config.env```
 
 Default bank import files folder ./bank_files
 Default output folder is ./output
@@ -15,8 +13,9 @@ to the file configured in ERROR_FILE_PATH env var or in config_params.py.
 ### Launch
 ```buildoutcfg
 1.cd test_task_banks_import
-2.pip[3.9] install -r requirements.txt
-3.python[3.9] main.py
+2.source config.env
+3.pip[3.9] install -r requirements.txt
+4.python[3.9] main.py
 ```
 
 ### run tests
