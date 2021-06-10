@@ -3,4 +3,4 @@ __pycache__
 .idea/
 venv/
 logs/
-/test_output
+/tests/test_output

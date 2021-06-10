@@ -1,9 +1,9 @@
 import csv
 import _io
-import config_params
+from api import config_params
 
-from default_logger import logger
-from writers import DataWriter
+from api.default_logger import logger
+from api.writers import DataWriter
 from dateutil.parser import parse
 from csv import DictReader
 from typing import Tuple

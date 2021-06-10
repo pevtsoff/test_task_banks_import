@@ -1,19 +1,19 @@
 import os
 import pytest
-import config_params
+from api import config_params
 import main
 
-from csv_parser import output_fields, parse_csv_file
+from api.csv_parser import output_fields, parse_csv_file
 
 
 
-input_file_path = './test_data/*.csv'
-output_file_path = './test_output/unified_output.txt'
-error_file_path = './test_output/error_output.txt'
+input_file_path = 'test_data/*.csv'
+output_file_path = 'test_output/unified_output.txt'
+error_file_path = 'test_output/error_output.txt'
 test_output_folder = './test_output'
 
 expected_output = {
-    './test_data/valid/bank1.csv':
+    './tests/test_data/valid/bank1.csv':
             {
                 'output': 'date,transaction_type,amount,from,to\n'
                           '2019-10-01,remove,99.20,198,182\n'
@@ -22,14 +22,14 @@ expected_output = {
                 'error_output': ''
             },
 
-    './test_data/valid/bank2.csv':
+    './tests/test_data/valid/bank2.csv':
             {
                 'output': 'date,transaction_type,amount,from,to\n'
                           '2019-03-10,remove,99.40,198,182\n'
                           '2019-04-10,add,2123.50,188,198\n',
                 'error_output': ''},
 
-    './test_data/valid/bank3.csv':
+    './tests/test_data/valid/bank3.csv':
             {
                 'output': 'date,transaction_type,amount,from,to\n'
                           '2019-10-05,remove,5.07,198,182\n'
@@ -38,7 +38,7 @@ expected_output = {
 
     # this file contains a  row with broken date field so we except it to be filtered out to
     # error output
-    './test_data/invalid/bank1.csv':
+    './tests/test_data/invalid/bank1.csv':
             {
                'output': 'date,transaction_type,amount,from,to\n'
                          '2019-10-02,add,2000.10,188,198\n',
