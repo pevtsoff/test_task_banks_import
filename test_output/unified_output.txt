@@ -1,2 +1,0 @@
-date,transaction_type,amount,from,to
-2019-10-02,add,2000.10,188,198

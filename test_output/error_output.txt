@@ -1,1 +1,0 @@
-Cell "('timestamp', 'asdadad')" in row: "{'timestamp': 'asdadad', 'type': 'remove', 'amount': '99.20', 'from': '198', 'to': '182'}" in file: "<_io.TextIOWrapper name='./tests/test_data/invalid/bank1.csv' mode='r' encoding='utf-8'>" caused exception: "Unknown string format: asdadad"
