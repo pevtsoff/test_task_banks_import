@@ -7,6 +7,11 @@ from api.default_logger import logger
 from api.writers import CSVWriter, JSONWriter, XMLWriter
 
 
+NO_ERRORS = 0
+PARSING_ERRORS_OCCURED = 1
+FATAL_ERRORS_OCCURED = 2
+
+
 def get_writer(output_type):
     if output_type == 'csv':
        return  CSVWriter
@@ -23,10 +28,11 @@ def get_writer(output_type):
 def get_exit_code(error_file):
     if error_file.tell():
         logger.info('Import finished with errors')
-        return 1
+        return ERRORS_OCCURED
+
     else:
         logger.info('Import finished without errors')
-        return 0
+        return NO_ERRORS
 
 
 def get_input_files_list():
@@ -43,6 +49,7 @@ def check_input_files(files):
 def main():
     output_file_path = config_params.OUTPUT_FILE_PATH
     error_file_path = config_params.ERROR_FILE_PATH
+
     files = get_input_files_list()
     start = time.time()
     logger.info('Starting parser')
@@ -66,7 +73,7 @@ def main():
         logger.exception(f'error occured while initializing readers/writers: {e}')
 
     finally:
-        sys.exit(2)
+        sys.exit(FATAL_ERRORS_OCCURED)
 
 if __name__ == '__main__':
     main()

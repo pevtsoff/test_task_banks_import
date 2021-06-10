@@ -13,10 +13,10 @@ to the file configured in ERROR_FILE_PATH env var or in config_params.py.
 
 ### Launch
 ```buildoutcfg
-1.cd test_task_banks_import
-2.source config.env
-3.pip[3.9] install -r requirements.txt
-4.python[3.9] main.py
+1. cd test_task_banks_import
+2. source ./set_env_vars.sh config.env
+3. pip[3.9] install -r requirements.txt
+4. python[3.9] main.py
 ```
 
 ### run tests
