@@ -4,8 +4,10 @@ from csv import DictWriter
 class DataWriter:
     '''Base class for all future data writers'''
 
-    def write_row(self):
-        raise NotImplemented("Please implement this method in subclass!")
+    def write_row(self, row):
+        raise NotImplementedError(
+            "Please implement this method in subclass!"
+        )
 
 
 class CSVWriter(DataWriter):

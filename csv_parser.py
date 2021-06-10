@@ -1,14 +1,15 @@
 import csv
 import _io
+import config_params
 
 from default_logger import logger
 from writers import DataWriter
 from dateutil.parser import parse
-from csv import DictReader, DictWriter
+from csv import DictReader
 from typing import Tuple
 
 ############################################### Parse Helpers ##########################################################
-import config_params
+
 
 
 def date_parser(date: str) -> str:

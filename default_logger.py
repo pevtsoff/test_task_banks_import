@@ -1,8 +1,9 @@
 import os, logging
+import config_params
 from datetime import datetime
 from logging.handlers import RotatingFileHandler
 
-import config_params
+
 
 log_folder = os.path.realpath("./logs")
 
