@@ -26,9 +26,12 @@ def configure_log_folder(file_name):
 def conf_logger(log_level):
     filename = 'csv-parser-{:%Y-%m-%d %H-%M-%S}.log'.format(datetime.now())
     logs_path = configure_log_folder(filename)
+
     logger = logging.getLogger("csv_parser")
     logger.setLevel(logging.DEBUG)
-    fileHandler = RotatingFileHandler(logs_path, maxBytes=5000000, backupCount=5)
+    fileHandler = RotatingFileHandler(
+        logs_path, maxBytes=5000000, backupCount=5
+    )
 
     fileHandler.setLevel(logging.DEBUG)
     consoleHandler = logging.StreamHandler()

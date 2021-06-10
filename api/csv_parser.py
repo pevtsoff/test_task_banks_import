@@ -8,10 +8,9 @@ from dateutil.parser import parse
 from csv import DictReader
 from typing import Tuple
 
+
+
 ############################################### Parse Helpers ##########################################################
-
-
-
 def date_parser(date: str) -> str:
     return parse(date).date().isoformat()
 
@@ -69,7 +68,7 @@ parsing_map = {
 }
 
 # Columns aggregation on row level
-composite_columns = {
+aggregate_fields_map = {
   # This columns map means that during csv input file reading, we need to
   # add amount_int + amount_dec. This is done the simplest way and can be easily
   # extended to amount_int.operation([colum1, column2 etc]) so that we can aggregate more
@@ -86,8 +85,8 @@ composite_columns = {
 
 output_fields = get_output_field_names()
 
-############################################## Main Parser Methods #####################################################
 
+############################################## Main Parser Methods #####################################################
 def parse_csv_file(input_file_path: str, writer: DataWriter , error_writer: _io.TextIOWrapper):
     with open(input_file_path, 'r', encoding=config_params.INPUT_ENCODING) as input_file:
         _parse_csv_file(input_file, writer, error_writer)
@@ -123,7 +122,7 @@ def aggregate_fields(meta_out_row: dict) -> dict:
     fields_to_delete = []
 
     for field in meta_out_row.keys():
-        cc = composite_columns.get(field)
+        cc = aggregate_fields_map.get(field)
 
         if cc and parsing_map[cc['output_field_name']]['out_field']:
             # evaluation for the dynamic operation like "+" defined in composite_columns

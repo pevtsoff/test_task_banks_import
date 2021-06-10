@@ -8,8 +8,9 @@ Default output folder is ./output
 ### Import logic. 
 Parser will read the files in the  BANK_FILES_PATH folder one by one, and will
 read them line by line, doing all the transformations/aggregations on a row level.
-In case parser finds any error in a cell, it reports the whole line 
-to the file configured in ERROR_FILE_PATH env var or in config_params.py.
+If output field is an aggregation one or more input fields - it should be added to 
+the csv_parser.aggregate_fields_map dict. In case parser finds any error in an input cell - 
+it will report the whole line to the file configured in ERROR_FILE_PATH env var or in config_params.py.
 
 ### Launch
 ```buildoutcfg
@@ -21,7 +22,7 @@ to the file configured in ERROR_FILE_PATH env var or in config_params.py.
 
 ### run tests
 ```
-1.export PYTHONPATH='path to your folder'
+1.export PYTHONPATH='path to your folder/test_task_banks_import'
 2.pytest -s -v .
 ```
 
