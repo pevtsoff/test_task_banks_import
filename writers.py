@@ -3,10 +3,12 @@ from csv import DictWriter
 
 class DataWriter:
     '''Base class for all future data writers'''
-    def write_row(self):...
+
+    def write_row(self):
+        raise NotImplemented("Please implement this method in subclass!")
 
 
-class CSVWriter:
+class CSVWriter(DataWriter):
     def __init__(self, file, fields):
         self.csv_dict_writer = DictWriter(
             file, delimiter=',', fieldnames=fields
@@ -17,13 +19,13 @@ class CSVWriter:
         self.csv_dict_writer.writerow(row)
 
 
-class JSONWriter:
+class JSONWriter(DataWriter):
     def __init__(self, file, fields):...
 
     def write_row(self, row):...
 
 
-class XMLWriter:
+class XMLWriter(DataWriter):
     def __init__(self, file, fields):...
 
     def write_row(self, row):...
