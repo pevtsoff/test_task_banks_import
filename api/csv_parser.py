@@ -1,7 +1,7 @@
 import csv
 import _io
-from api import config_params
 
+from api import config_params
 from api.default_logger import logger
 from api.writers import DataWriter
 from dateutil.parser import parse

@@ -33,6 +33,12 @@ def get_input_files_list():
     input_file_path = f'{config_params.BANK_FILES_PATH}/*.csv'
     return [*glob.iglob(input_file_path, recursive=True)]
 
+def check_input_files(files):
+    if not files:
+        raise RuntimeError(
+            f"No input files found by a specified path: {config_params.BANK_FILES_PATH}"
+        )
+
 
 def main():
     output_file_path = config_params.OUTPUT_FILE_PATH
@@ -44,6 +50,7 @@ def main():
     try:
         with open(output_file_path, 'w') as output_file:
             with open(error_file_path, 'w') as error_file:
+                check_input_files(files)
 
                 writer = get_writer(
                     config_params.OUTPUT_TYPE
@@ -54,8 +61,10 @@ def main():
 
                 logger.info(f'parsing took {time.time() - start:2f} seconds')
                 sys.exit(get_exit_code(error_file))
+
     except Exception as e:
         logger.exception(f'error occured while initializing readers/writers: {e}')
+
     finally:
         sys.exit(2)
 
