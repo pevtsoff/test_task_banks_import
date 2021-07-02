@@ -28,7 +28,7 @@ def get_writer(output_type):
 def get_exit_code(error_file):
     if error_file.tell():
         logger.info('Import finished with errors')
-        return ERRORS_OCCURED
+        return PARSING_ERRORS_OCCURED
 
     else:
         logger.info('Import finished without errors')

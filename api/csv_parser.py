@@ -42,7 +42,7 @@ parsing_map = {
 
     'amount': {
         'single_column': ['amount', 'amounts'],
-        'parser': str, 'out_field': True
+        'parser': float, 'out_field': True
     },
 
     'amount_int': {
